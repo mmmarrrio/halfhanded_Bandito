@@ -66,6 +66,20 @@ namespace zhidocazich
                             Q--;
                             if (Q == 0)
                             {
+                                Console.WriteLine("wanna check ur balance?");
+                                string F = Console.ReadLine();
+                                if (F == "Y")
+                                {
+                                    Console.WriteLine(B);
+                                }
+                                else if (F == "N")
+                                {
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Y or N you stupid nigger");
+                                }
                                 Console.WriteLine("wanna do it again?");
                                 string m = Console.ReadLine();
                                 if (m == "Y")
