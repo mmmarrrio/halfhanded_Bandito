@@ -44,19 +44,19 @@ namespace zhidocazich
                             if (S == 7 && V == 7 && O == 7)
                             {
                                     I = I * 100;
-                                    B = B + I;
+                                    ulong B1 = B + I;
                                     Console.WriteLine("YOU CATCHED JACKPOT!!!");
                             }
                             else if (S == V && V == O)
                             {
                                     I = I * 10;
-                                    B = B + I;
+                                    ulong B2 = B + I;
                                     Console.WriteLine("you-ve got many money!");
                             }
                             else
                             {
                                     Console.WriteLine("you-ve got zero");
-                                    B = B - I;
+                                    ulong B3 = B - I;
                             }
                             if (B <= 0)
                             {
