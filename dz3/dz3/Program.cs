@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.Metrics;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
+using System.Text.Json.Serialization;
 using System.Transactions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace zhidocazich
@@ -25,71 +27,99 @@ namespace zhidocazich
                 {
                     while (B > 0)
                     {
-
+                        ulong B1 = 0;
+                        ulong B2 = 0;
+                        ulong B3 = 0;
                         Console.WriteLine("now enter ur bid");
                         ulong I = ulong.Parse(Console.ReadLine());
-                        if (I > B){ Console.WriteLine("you don't have enough money acoustic monkey"); return; }
-                        else if (I == B) { Console.WriteLine("you're risky guy, i like it"); }
+                        if (I > B)
+                        {
+                            Console.WriteLine("you don't have enough money acoustic monkey");
+                            return; 
+                        }
+                        else if (I == B) 
+                        {
+                            Console.WriteLine("you're risky guy, i like it");
+                        }
                         Console.WriteLine("i've almost forgot, how many spins do you need?");
                         ulong Q = ulong.Parse(Console.ReadLine());
                         ulong J = Q * I;
-                        if (J > B) { Console.WriteLine("ayo lil bro, chillout, you didn't have enought money for this burrito gamblitto!"); return;}
-                        else if (J == B) { Console.WriteLine("you're risky guy, i like it"); }
-                        Console.WriteLine("let's start GAMBLING!!!");
-                        for (;Q > 0;) 
+                        if (J > B) 
                         {
-                        int S = s[rnd.Next(1, 9)];
-                        int V = s[rnd.Next(1, 9)];
-                        int O = s[rnd.Next(1, 9)];
+                            Console.WriteLine("ayo lil bro, chillout, you didn't have enought money for this burrito gamblitto!");
+                            return;
+                        }
+                        else if (J == B) 
+                        { 
+                            Console.WriteLine("you're risky guy, i like it"); 
+                        }
+                        Console.WriteLine("let's start GAMBLING!!!");
+                        B = B - J;
+                        for (;Q > 0;)
+                        {
+                            int S = s[rnd.Next(1, 9)];
+                            int V = s[rnd.Next(1, 9)];
+                            int O = s[rnd.Next(1, 9)];
                             if (S == 7 && V == 7 && O == 7)
                             {
-                                    I = I * 100;
-                                    ulong B1 = B + I;
-                                    Console.WriteLine("YOU CATCHED JACKPOT!!!");
+                                B1++;
                             }
                             else if (S == V && V == O)
                             {
-                                    I = I * 10;
-                                    ulong B2 = B + I;
-                                    Console.WriteLine("you-ve got many money!");
+                                B2++;
                             }
                             else
                             {
-                                    Console.WriteLine("you-ve got zero");
-                                    ulong B3 = B - I;
-                            }
-                            if (B <= 0)
-                            {
-                                    Console.WriteLine("you've been lost all ur money, now get ta fck outa here you silly bun, come back when you'll get some of them");
-                                    return;
+                                B3++;
                             }
                             Q--;
                             if (Q == 0)
                             {
-                                Console.WriteLine("wanna check ur balance?");
-                                string F = Console.ReadLine();
-                                if (F == "Y")
-                                {
-                                    Console.WriteLine(B);
+                                Console.WriteLine("you're catched jackpot - "+B1+" times"+ " you've catched many moneys- " + B2 + " times" + " you've got zero - " + B3 + " times" );
+                                ulong L = B3 * 0;
+                                ulong k = B1 * (I * 100);
+                                ulong t = B2 * (I * 10);
+                                B = B + k + t + L;
+                                for(int j = 0; j != 1;) 
+                                { 
+                                    Console.WriteLine("wanna check ur balance?");
+                                    string F = Console.ReadLine();
+                                    if (F == "Y")
+                                    {
+                                        Console.WriteLine(B);
+                                        j++;
+                                    }
+                                    else if (F == "N")
+                                    {
+                                        j++;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Y or N you stupid nigger");
+                                    }
                                 }
-                                else if (F == "N")
+                                if (B <= 0)
                                 {
-
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Y or N you stupid nigger");
-                                }
-                                Console.WriteLine("wanna do it again?");
-                                string m = Console.ReadLine();
-                                if (m == "Y")
-                                {
-                                    Console.WriteLine("Let's pawn our home in this casino!");
-
-                                }
-                                else if (m == "N")
-                                {
+                                    Console.WriteLine("you've been lost all ur money, now get ta fck outa here you silly bun, come back when you'll get some of them");
                                     return;
+                                }
+                                for (int j = 0; j != 1;)
+                                {
+                                    Console.WriteLine("wanna do it again?");
+                                    string m = Console.ReadLine();
+                                    if (m == "Y")
+                                    {
+                                        Console.WriteLine("Let's pawn our home in this casino!");
+                                        j++;
+                                    }
+                                    else if (m == "N")
+                                    {
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Y or N");
+                                    }
                                 }
                             }
                         }
